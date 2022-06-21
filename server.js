@@ -4,23 +4,25 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const path = require('path');
 const cors = require('cors');
-// Cors 
-const corsOptions = {
-  origin: process.env.ALLOWED_CLIENTS.split(','),
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
-    optionsSuccessStatus: 204
+// // Cors 
+// const corsOptions = {
+//   origin: process.env.ALLOWED_CLIENTS.split(','),
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     preflightContinue: false,
+//     optionsSuccessStatus: 204
 
-  // ['http://localhost:3000', 'http://localhost:5000', 'http://localhost:3300']
-}
+//   // ['http://localhost:3000', 'http://localhost:5000', 'http://localhost:3300']
+// }
 
-// Default configuration looks like
-// {
-//     "origin": "*",
+// // Default configuration looks like
+// // {
+// //     "origin": "*",
     
-//   }
+// //   }
 
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
+app.use(cors());
+app.options('*', cors());
 app.use(express.static('public')); //telling express to render static folder on re render forcibly so css is applied 
 
 const connectDB = require('./config/db');
